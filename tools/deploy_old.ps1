@@ -4,7 +4,12 @@ if ( ![bool](Test-Path -Path "P:")) {
 }
 
 # Set version
-$tagVersion = git describe --tags --abbrev=0
+if ( -not $args ) {
+  $tagVersion = git describe --tags --abbrev=0
+} else {
+  $tagVersion = $args
+}
+
 Write-Host "Build version $tagVersion"
 
 $version = $tagVersion.Split(".")

@@ -3,8 +3,11 @@ cd $PSScriptRoot
 cd ..
 
 # Set version
-$tagVersion = git describe --tags --abbrev=0
-Write-Host "Build version $tagVersion"
+if ( -not $args ) {
+  $tagVersion = git describe --tags --abbrev=0
+} else {
+  $tagVersion = $args
+}
 
 $version = $tagVersion.Split(".")
 $versionMajor = $version[0]
